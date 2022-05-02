@@ -10,7 +10,7 @@ import { toggle_modal, remove_item, plus_one_item, minus_one_item } from "../../
 const Item = ({ item }) => {
     const dispatch = React.useContext(GlobalDispatchContext)
     const state = React.useContext(GlobalStateContext)
-    const [quantity, setQuantity] = React.useState(item.quantity)
+    const [quantity, setQuantity] = React.useState(item.quantity || 0)
 
 
     return <li>
