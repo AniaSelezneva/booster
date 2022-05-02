@@ -7,14 +7,49 @@ import * as styles from "./styles.module.scss"
 import { toggle_modal, add_name, add_phone, remove_item, plus_one_item, minus_one_item } from "../../../context/actions"
 import Item from "./item"
 
+String.prototype.replaceAt = function (index, replacement) {
+  if (index >= this.length) {
+    return this.valueOf();
+  }
+
+  return this.substring(0, index) + replacement + this.substring(index + 1);
+}
+
 
 // markup
 const OrderModal = () => {
   const dispatch = React.useContext(GlobalDispatchContext)
   const state = React.useContext(GlobalStateContext)
 
-  const [patternValue, setPatternValue] = React.useState(undefined)
-  const [phone, setPhone] = React.useState('+7(___)___-__-__')
+  const [prevPhone, setPrevPhone] = React.useState(`+7(___)___-__-__`)
+  const [phone, setPhone] = React.useState(`+7(___)___-__-__`) // 3,4,5; 7,8,9; 11,12; 14,15
+  const [updatedPhone, setUpdatedPhone] = React.useState('')
+
+  const applyPattern = (phone) => {
+
+    const pattern = `+7(___)___-__-__`
+
+    let changedIdx;
+    const numArr = phone.split('')
+    const prevNumArr = prevPhone.split('')
+
+    console.log(numArr, prevNumArr)
+
+    // numArr.forEach((num, idx) => {
+    //   prevNumArr.forEach(prevArrNum => {
+    //     if (num !== prevArrNum) {
+    //       changedIdx = idx
+
+    //       console.log(changedIdx)
+
+    //       pattern.replaceAt(changedIdx, num)
+    //       setPrevPhone(pattern)
+    //       setPhone(pattern)
+    //       return pattern
+    //     }
+    //   })
+    // })
+  }
 
   const [targetEmail, setTargetEmail] = React.useState()
 
@@ -50,7 +85,7 @@ const OrderModal = () => {
   }
 
   React.useEffect(() => {
-
+    applyPattern(phone)
   }, [phone])
 
 
@@ -66,7 +101,7 @@ const OrderModal = () => {
       </div>
       <div className={styles.email}>
         <label htmlFor="phone">Телефон: </label>
-        <input pattern="+[7-8]{1}[0-9]{2}-[0-9]{3}-[0-9]{4}" minLength="11" maxLength="12" type="tel" name="phone" id="phone" required
+        <input placeholder="+7(___)___-__-__" minLength="11" maxLength="17" type="tel" name="phone" id="phone" required
           value={phone}
           onChange={e => { setPhone(e.target.value) }} />
       </div>
