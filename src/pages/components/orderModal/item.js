@@ -13,7 +13,7 @@ const Item = ({ item }) => {
     const [quantity, setQuantity] = React.useState(item?.quantity || 0)
 
 
-    return <li>
+    return {item ? <li>
         <img src={item.item.img} alt={item.item.title} />
         <div className={styles.quantity}>
             {/* Arrow left */}
@@ -25,7 +25,7 @@ const Item = ({ item }) => {
         </div>
         <p>{item.item.title}</p>
         <span className={styles.remove_item} onClick={() => dispatch(remove_item(item.item.id))}>&#10005;</span>
-    </li>
+    </li> : </>}
 }
 
 
