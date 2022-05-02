@@ -24,7 +24,7 @@ const OrderModal = () => {
   const [prevPhone, setPrevPhone] = React.useState(`+7(___)___-__-__`)
   const [phone, setPhone] = React.useState(`+7(___)___-__-__`) // 3,4,5; 7,8,9; 11,12; 14,15
   const [updatedPhone, setUpdatedPhone] = React.useState('')
-  const [idx, setIdx] = React.useState()
+  const [idx, setIdx] = React.useState('')
 
   const applyPattern = (phone) => {
 
@@ -38,7 +38,7 @@ const OrderModal = () => {
        prevNumArr.forEach((prevArrNum, prevIdx) => {
        
         if (idx===prevIdx && num !== prevArrNum) {
-          changedIdx = prevArrIdx
+          changedIdx = idx
            setIdx(`${numArr} # ${prevNumArr} # ${changedIdx}`)
            //console.log(changedIdx)
            //alert(changedIdx)
