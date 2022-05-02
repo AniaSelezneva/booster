@@ -35,10 +35,10 @@ const OrderModal = () => {
 
      numArr.forEach((num, idx) => {
        prevNumArr.forEach(prevArrNum => {
-         alert(num, prevArrNum)
+       
         if (num !== prevArrNum) {
           changedIdx = idx-1
-
+alert(changedIdx)
            //console.log(changedIdx)
            //alert(changedIdx)
           // alert(prevPhone.replaceAt(changedIdx, num).join(''))
