@@ -1,0 +1,34 @@
+@import url(//fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap);
+
+
+* {
+  list-style-type: none;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 600;
+  color: black;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+
+  .main {
+    flex-grow: 1;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.list {
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+
+  &>li {
+    cursor: pointer;
+  }
+}
