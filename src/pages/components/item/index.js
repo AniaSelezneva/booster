@@ -14,7 +14,7 @@ const Item = ({ data }) => {
   const state = React.useContext(GlobalStateContext)
   
   let item = undefined
-  if(data) item = item.data
+  if(data) item = data.item
 
 
   return (<li className={styles.item}>
