@@ -25,7 +25,7 @@ const Item = ({ item }) => {
             <span onClick={() => { dispatch(plus_one_item(item.item.id)); setQuantity(prev => (prev += 1)) }}>&#x3e;</span>
         </div>
         <p>{item.item.title}</p>
-        <span className={styles.remove_item} onClick={() => dispatch(remove_item(item.item.id))}>&#10005;</span></> : </>}
+        <span className={styles.remove_item} onClick={() => dispatch(remove_item(item.item.id))}>&#10005;</span></> : <span/>}
     </li>
 }
 
