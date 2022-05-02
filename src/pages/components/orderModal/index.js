@@ -43,7 +43,7 @@ const OrderModal = () => {
            //console.log(changedIdx)
            //alert(changedIdx)
           // alert(prevPhone.replaceAt(changedIdx, num).join(''))
-          //setPrevPhone(prevPhone.replaceAt(changedIdx, num).join(''))
+          setPrevPhone(prevPhone.replaceAt(changedIdx-1, num).join(''))
           //setPrevPhone(phone)
                 }
      })
