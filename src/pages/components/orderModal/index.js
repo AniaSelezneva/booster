@@ -35,20 +35,19 @@ const OrderModal = () => {
 
     console.log(numArr, prevNumArr)
 
-    // numArr.forEach((num, idx) => {
-    //   prevNumArr.forEach(prevArrNum => {
-    //     if (num !== prevArrNum) {
-    //       changedIdx = idx
+     numArr.forEach((num, idx) => {
+       prevNumArr.forEach(prevArrNum => {
+        if (num !== prevArrNum) {
+          changedIdx = idx-1
 
-    //       console.log(changedIdx)
-
-    //       pattern.replaceAt(changedIdx, num)
-    //       setPrevPhone(pattern)
-    //       setPhone(pattern)
-    //       return pattern
-    //     }
-    //   })
-    // })
+           console.log(changedIdx)
+alert(changedIdx)
+          pattern.replaceAt(changedIdx, num)
+          setPrevPhone(pattern)
+          setPhone(pattern)
+                }
+     })
+    })
   }
 
   const [targetEmail, setTargetEmail] = React.useState()
