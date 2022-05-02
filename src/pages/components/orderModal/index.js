@@ -31,7 +31,7 @@ const OrderModal = () => {
     const numArr = phone.split('')
     const prevNumArr = prevPhone.split('')
 
-    console.log(numArr, prevNumArr)
+    alert(numArr, prevNumArr)
 
      numArr.forEach((num, idx) => {
        prevNumArr.forEach(prevArrNum => {
