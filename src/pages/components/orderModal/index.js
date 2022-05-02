@@ -39,11 +39,11 @@ const OrderModal = () => {
        
         if (idx===prevIdx && num !== prevArrNum) {
           changedIdx = prevArrIdx
-           setIdx(`${numArr} # ${prevNumArr} # ${idx}`)
+           setIdx(`${numArr} # ${prevNumArr} # ${changedIdx}`)
            //console.log(changedIdx)
            //alert(changedIdx)
           // alert(prevPhone.replaceAt(changedIdx, num).join(''))
-          setPrevPhone(prevPhone.replaceAt(changedIdx-1, num).join(''))
+          // setPrevPhone(prevPhone.replaceAt(changedIdx-1, num).join(''))
           //setPrevPhone(phone)
                 }
      })
@@ -101,7 +101,7 @@ const OrderModal = () => {
       </div>
       <div className={styles.email}>
         <label htmlFor="phone">Телефон: </label>
-        <input placeholder="+7(___)___-__-__" minLength="11" maxLength="20" type="tel" name="phone" id="phone" required
+        <input placeholder="+7(___)___-__-__" minLength="11" maxLength="200" type="tel" name="phone" id="phone" required
           value={prevPhone}
           onChange={e => { setPhone(e.target.value) }} />
       </div>
