@@ -38,9 +38,9 @@ const OrderModal = () => {
         if (num !== prevArrNum) {
           changedIdx = idx-1
 
-           console.log(changedIdx)
-           alert(changedIdx)
-          alert(prevPhone.replaceAt(changedIdx, num).join(''))
+           //console.log(changedIdx)
+           //alert(changedIdx)
+          // alert(prevPhone.replaceAt(changedIdx, num).join(''))
           setPrevPhone(prevPhone.replaceAt(changedIdx, num).join(''))
                 }
      })
