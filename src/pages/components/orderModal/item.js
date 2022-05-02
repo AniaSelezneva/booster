@@ -13,7 +13,8 @@ const Item = ({ item }) => {
     const [quantity, setQuantity] = React.useState(item?.quantity || 0)
 
 
-    return {item ? <li>
+    return <li>
+         { item ? <>
         <img src={item.item.img} alt={item.item.title} />
         <div className={styles.quantity}>
             {/* Arrow left */}
@@ -24,8 +25,8 @@ const Item = ({ item }) => {
             <span onClick={() => { dispatch(plus_one_item(item.item.id)); setQuantity(prev => (prev += 1)) }}>&#x3e;</span>
         </div>
         <p>{item.item.title}</p>
-        <span className={styles.remove_item} onClick={() => dispatch(remove_item(item.item.id))}>&#10005;</span>
-    </li> : </>}
+        <span className={styles.remove_item} onClick={() => dispatch(remove_item(item.item.id))}>&#10005;</span></> : </>}
+    </li>
 }
 
 
