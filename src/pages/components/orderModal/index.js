@@ -108,7 +108,7 @@ const OrderModal = () => {
 
       {/* Items */}
       <ul className={styles.items}>
-        {state.items.map((item, idx) => (
+        {state.items && state.items.map((item, idx) => (
 
           // Item
           <Item item={item} key={idx} />
