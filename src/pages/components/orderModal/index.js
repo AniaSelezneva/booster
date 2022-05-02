@@ -31,10 +31,11 @@ const OrderModal = () => {
     const numArr = phone.split('')
     const prevNumArr = prevPhone.split('')
 
-    alert(`${numArr} ~ ${prevNumArr}`)
+   
 
      numArr.forEach((num, idx) => {
        prevNumArr.forEach(prevArrNum => {
+         alert(num, prevArrNum)
         if (num !== prevArrNum) {
           changedIdx = idx-1
 
