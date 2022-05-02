@@ -27,8 +27,6 @@ const OrderModal = () => {
 
   const applyPattern = (phone) => {
 
-    const pattern = `+7(___)___-__-__`
-
     let changedIdx;
     const numArr = phone.split('')
     const prevNumArr = prevPhone.split('')
@@ -41,10 +39,9 @@ const OrderModal = () => {
           changedIdx = idx-1
 
            console.log(changedIdx)
-alert(changedIdx)
-          pattern.replaceAt(changedIdx, num)
-          setPrevPhone(pattern)
-          setPhone(pattern)
+           alert(changedIdx)
+          alert(prevPhone.replaceAt(changedIdx, num).join('')
+          setPrevPhone(prevPhone.replaceAt(changedIdx, num).join('')
                 }
      })
     })
@@ -84,7 +81,7 @@ alert(changedIdx)
   }
 
   React.useEffect(() => {
-    applyPattern(phone)
+   applyPattern(phone)
   }, [phone])
 
 
@@ -101,7 +98,7 @@ alert(changedIdx)
       <div className={styles.email}>
         <label htmlFor="phone">Телефон: </label>
         <input placeholder="+7(___)___-__-__" minLength="11" maxLength="17" type="tel" name="phone" id="phone" required
-          value={phone}
+          value={prevPhone}
           onChange={e => { setPhone(e.target.value) }} />
       </div>
 
