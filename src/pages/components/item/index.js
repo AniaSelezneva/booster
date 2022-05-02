@@ -18,12 +18,12 @@ const Item = ({ data }) => {
 
 
   return (<li className={styles.item}>
-    { item ?
+    { item ? <>
     <img src={item.img} alt={item.title}></img>
     <h3>{item.title}</h3>
     <p>{item.description}</p>
     <button onClick={() => { dispatch(add_item(item)) }}>add</button>
-    <Link to={`/items/${item.slug}`}>More info</Link> :<span/>}
+    <Link to={`/items/${item.slug}`}>More info</Link> </>:<span/>}
   </li>)
 }
 
