@@ -24,6 +24,7 @@ const OrderModal = () => {
   const [prevPhone, setPrevPhone] = React.useState(`+7(___)___-__-__`)
   const [phone, setPhone] = React.useState(`+7(___)___-__-__`) // 3,4,5; 7,8,9; 11,12; 14,15
   const [updatedPhone, setUpdatedPhone] = React.useState('')
+  const [idx, setIdx] = React.useState()
 
   const applyPattern = (phone) => {
 
@@ -38,11 +39,11 @@ const OrderModal = () => {
        
         if (num !== prevArrNum) {
           changedIdx = idx-1
-alert(changedIdx)
+           setIdx(changedIdx)
            //console.log(changedIdx)
            //alert(changedIdx)
           // alert(prevPhone.replaceAt(changedIdx, num).join(''))
-          setPrevPhone(prevPhone.replaceAt(changedIdx, num).join(''))
+          //setPrevPhone(prevPhone.replaceAt(changedIdx, num).join(''))
                 }
      })
     })
@@ -93,6 +94,7 @@ alert(changedIdx)
     {/* Form */}
     <form className={styles.form}>
       <div className={styles.name}>
+        <p>{idx}</p>
         <label htmlFor="name">Имя: </label>
         <input type="text" name="name" id="name" required onChange={e => { dispatch(add_name(e.target.value)) }} />
       </div>
