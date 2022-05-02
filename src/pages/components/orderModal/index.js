@@ -26,7 +26,7 @@ const OrderModal = () => {
   const [updatedPhone, setUpdatedPhone] = React.useState('')
   const [idx, setIdx] = React.useState('')
 
-  const applyPattern = (phone) => {
+  const applyPattern = (phone, prevPhone) => {
 
     let changedIdx;
     const numArr = phone.split('')
@@ -84,7 +84,7 @@ const OrderModal = () => {
   }
 
   React.useEffect(() => {
-   applyPattern(phone)
+   applyPattern(phone, prevPhone)
   }, [phone])
 
 
