@@ -30,64 +30,40 @@ const OrderModal = () => {
 
   const applyPattern = (editedPhone) => {
     
-    
-  
-
-    let changedIdx;
-    const numArr = phone.split('')
-    const editedNumArr = editedPhone.split('')
-
-
-    for (let i = 0; i < numArr.length; i++) {
-      for (let j = 0; j < editedNumArr.length && !changedIdx; j++) {
-        if (i!==0 && i!==1 && i!== 2 && i !== 6 && i!== 10 && i !== 13 && 
-            i === j && numArr[i] !== editedNumArr[j]) {
-          if (!isNaN(editedNumArr[i])) {
-            changedIdx = i
-            break
-          }
-
-        }
-
-      }
-    }
+           if(caretPosition !== 0 && caretPosition !== 1 && caretPosition !== 2 && 
+  caretPosition !== 6 && caretPosition !== 10 && caretPosition !== 13){
+             if(phone.charAt(caretPosition) !== editedPhone.charAt(caretPosition)) {
+               if  (!isNaN(editedPhone.charAt(caretPosition))){
+                 setPhone(prev => (prev.replaceAt(caretPosition, editedPhone(caretPosition))))
+                 setCaretPosition(prev => {let newPos = prev + 1;
+                                          if(newPos === 6 || newPos === 10 || newPos === 13)}){
+                                           newPos+=1
+                                          }
+                                           else if(newPos === 16){
+                                             newPos = 3
+                                           }
+                                           return newPos
+                                          })
+               }
+             }
+           }
+  }
 
     
+    
+   
+
+
+   
+     
+       
+
+   
 
    
         
             
-     function setCaretPosition(ctrl, start, end) {
-    // IE >= 9 and other browsers
-    if (ctrl.setSelectionRange) {
-        ctrl.focus();
-        ctrl.setSelectionRange(start, end);
-    }
-    // IE < 9 
-    else if (ctrl.createTextRange) {
-        var range = ctrl.createTextRange();
-        range.collapse(true);
-        range.moveEnd('character', end);
-        range.moveStart('character', start);
-        range.select();
-    }
-}   
-
-    if (changedIdx) {
-      setPhone(prev=> (prev.replaceAt(changedIdx, editedNumArr[changedIdx])))
-//phoneInputRef.current.focus()
-      //log(phoneInputRef.selectionStart)
-       //phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
-      //setCaretPosition(phoneInputRef.current, 3, 3)
-       
-     // setTimeout(()=> {phoneInputRef.current.selectionStart = 3; 
-      // phoneInputRef.current.selectionEnd = 3; }
-      // ,2000 ) 
-    }
-
-
-  }
-
+     
   const [targetEmail, setTargetEmail] = React.useState()
 
   const sendOrder = async () => {
