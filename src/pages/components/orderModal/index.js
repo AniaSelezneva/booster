@@ -22,6 +22,7 @@ const OrderModal = () => {
   const dispatch = React.useContext(GlobalDispatchContext)
   const state = React.useContext(GlobalStateContext)
   const phoneInputRef = React.useRef()
+  const [caretPosition, setCaretPosition] = React.useState()
 
   const [prevPhone, setPrevPhone] = React.useState(`+7(___)___-__-__`)
   const [phone, setPhone] = React.useState(`+7(___)___-__-__`) // 3,4,5; 7,8,9; 11,12; 14,15
@@ -142,6 +143,7 @@ const OrderModal = () => {
 
     {/* Form */}
     <form className={styles.form}>
+      <p> {caretPosition ? caretPosition : 'x'}</p>
       <div className={styles.name}>
         <label htmlFor="name">Имя: </label>
         <input type="text" name="name" id="name" required onChange={e => { dispatch(add_name(e.target.value)) }} />
@@ -150,7 +152,7 @@ const OrderModal = () => {
         <label htmlFor="phone">Телефон: </label>
         <input ref={phoneInputRef} placeholder="+7(___)___-__-__" minLength="11" maxLength="200" type="tel" name="phone" id="phone" required
           value={prevPhone}
-          onChange={e => {e.target.selectionStart =3 ; e.target.selectionEnd = 3; setPhone(e.target.value); applyPattern(e.target.value) }} 
+          onChange={e => { setCaretPosition(e.target.selectionStart); setPhone(e.target.value); applyPattern(e.target.value) }} 
           />
       </div>
 
