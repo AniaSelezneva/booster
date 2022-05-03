@@ -15,16 +15,17 @@ String.prototype.replaceAt = function (index, replacement) {
   return this.substring(0, index) + replacement + this.substring(index + 1);
 }
 
+const log = console.log
 
 // markup
 const OrderModal = () => {
   const dispatch = React.useContext(GlobalDispatchContext)
   const state = React.useContext(GlobalStateContext)
+  const phoneInputRef = React.useRef()
 
   const [prevPhone, setPrevPhone] = React.useState(`+7(___)___-__-__`)
   const [phone, setPhone] = React.useState(`+7(___)___-__-__`) // 3,4,5; 7,8,9; 11,12; 14,15
-  const [updatedPhone, setUpdatedPhone] = React.useState('')
-  const [idx, setIdx] = React.useState('')
+
 
   const applyPattern = (phone, prevPhone) => {
 
@@ -32,22 +33,28 @@ const OrderModal = () => {
     const numArr = phone.split('')
     const prevNumArr = prevPhone.split('')
 
-   
 
-     numArr.forEach((num, idx) => {
-       prevNumArr.forEach((prevArrNum, prevIdx) => {
-       
-        if (idx===prevIdx && num !== prevArrNum) {
-          changedIdx = idx
-           setIdx(`${numArr} # ${prevNumArr} # ${changedIdx}`)
-           //console.log(changedIdx)
-           //alert(changedIdx)
-          // alert(prevPhone.replaceAt(changedIdx, num).join(''))
-          // setPrevPhone(prevPhone.replaceAt(changedIdx-1, num).join(''))
-          //setPrevPhone(phone)
-                }
-     })
-    })
+    for (let i = 0; i < numArr.length; i++) {
+      for (let j = 0; j < prevNumArr.length && !changedIdx; j++) {
+        if (i === j && numArr[i] !== prevNumArr[j]) {
+          if (!isNaN(numArr[i])) {
+            changedIdx = i
+            break
+          }
+
+        }
+
+      }
+    }
+
+
+    if (changedIdx) {
+      setPrevPhone(prevPhone.replaceAt(changedIdx, numArr[changedIdx]))
+      log(phoneInputRef.selectionStart)
+      // phoneInputRef.current.selectionStart = changedIdx + 1
+    }
+
+
   }
 
   const [targetEmail, setTargetEmail] = React.useState()
@@ -84,8 +91,12 @@ const OrderModal = () => {
   }
 
   React.useEffect(() => {
-   applyPattern(phone, prevPhone)
+    applyPattern(phone, prevPhone)
   }, [phone])
+
+  React.useEffect(() => {
+    log(prevPhone)
+  }, [prevPhone])
 
 
   return (<>
@@ -95,13 +106,12 @@ const OrderModal = () => {
     {/* Form */}
     <form className={styles.form}>
       <div className={styles.name}>
-        <p>{idx}</p>
         <label htmlFor="name">Имя: </label>
         <input type="text" name="name" id="name" required onChange={e => { dispatch(add_name(e.target.value)) }} />
       </div>
       <div className={styles.email}>
         <label htmlFor="phone">Телефон: </label>
-        <input placeholder="+7(___)___-__-__" minLength="11" maxLength="200" type="tel" name="phone" id="phone" required
+        <input ref={phoneInputRef} placeholder="+7(___)___-__-__" minLength="11" maxLength="200" type="tel" name="phone" id="phone" required
           value={prevPhone}
           onChange={e => { setPhone(e.target.value) }} />
       </div>
