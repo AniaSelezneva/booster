@@ -52,7 +52,7 @@ const OrderModal = () => {
       setPrevPhone(prev=> (prev.replaceAt(changedIdx, numArr[changedIdx])))
 phoneInputRef.current.focus()
       //log(phoneInputRef.selectionStart)
-       phoneInputRef.current.selectionStart = changedIdx 
+       phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
     }
 
 
