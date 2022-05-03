@@ -82,7 +82,7 @@ const OrderModal = () => {
 //phoneInputRef.current.focus()
       //log(phoneInputRef.selectionStart)
        //phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
-      setCaretPosition(phoneInputRef.current, 3, 3)
+      //setCaretPosition(phoneInputRef.current, 3, 3)
        
         
        
@@ -147,7 +147,9 @@ const OrderModal = () => {
         <label htmlFor="phone">Телефон: </label>
         <input ref={phoneInputRef} placeholder="+7(___)___-__-__" minLength="11" maxLength="200" type="tel" name="phone" id="phone" required
           value={prevPhone}
-          onChange={e => { setPhone(e.target.value); applyPattern(e.target.value) }} />
+          onChange={e => { setPhone(e.target.value); applyPattern(e.target.value) }} 
+          onBlur={() => textareaRef.current.setSelectionRange(5, 5)}
+          />
       </div>
 
       {/* Items */}
