@@ -82,7 +82,7 @@ const OrderModal = () => {
 //phoneInputRef.current.focus()
       //log(phoneInputRef.selectionStart)
        //phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
-      setCaretPosition(phoneInputRef.current, changedIdx, changedIdx+1)
+      setCaretPosition(phoneInputRef.current, 3, 3)
        
         
        
