@@ -127,9 +127,9 @@ const OrderModal = () => {
 
   React.useEffect(() => {
     let editedPos
-    if(phone.charAt(caretPosition) === ')') editedPos= caretPosition+1 
-    if(phone.charAt(caretPosition) === '-') editedPos = caretPosition +1
-    else editedPos = caretPosition 
+    if(caretPosition === 6) editedPos= 8
+    else if(phone.charAt(caretPosition) === '-') editedPos = caretPosition + 2
+    else editedPos = caretPosition +1
     if(caretPosition){
     phoneInputRef.current.selectionStart = editedPos; 
     phoneInputRef.current.selectionEnd = editedPos;}
