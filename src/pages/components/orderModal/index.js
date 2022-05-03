@@ -30,23 +30,27 @@ const OrderModal = () => {
 
   const applyPattern = (editedPhone) => {
     
-           if(caretPosition !== 0 && caretPosition !== 1 && caretPosition !== 2 && 
-  caretPosition !== 6 && caretPosition !== 10 && caretPosition !== 13){
+     if(caretPosition !== 0 && caretPosition !== 1 && caretPosition !== 2 && 
+         caretPosition !== 6 && caretPosition !== 10 && caretPosition !== 13){
+       
              if(phone.charAt(caretPosition) !== editedPhone.charAt(caretPosition)) {
+               
                if  (!isNaN(editedPhone.charAt(caretPosition))){
+                 
                  setPhone(prev => (prev.replaceAt(caretPosition, editedPhone(caretPosition))))
+                 
                  setCaretPosition(prev => {let newPos = prev + 1;
-                                          if(newPos === 6 || newPos === 10 || newPos === 13)}){
+                                          if(newPos === 6 || newPos === 10 || newPos === 13)
                                            newPos+=1
-                                          }
-                                           else if(newPos === 16){
+                                          
+                                           else if(newPos === 16)
                                              newPos = 3
-                                           }
+                                           
                                            return newPos
                                           })
-               }
-             }
-           }
+         }
+       }
+    }
   }
 
     
@@ -102,13 +106,8 @@ const OrderModal = () => {
  // }, [phone])
 
   React.useEffect(() => {
-    let editedPos
-    if(caretPosition === 6) editedPos= 8
-    else if(phone.charAt(caretPosition) === '-') editedPos = caretPosition + 2
-    else editedPos = caretPosition +1
-    if(caretPosition){
-    phoneInputRef.current.selectionStart = editedPos; 
-    phoneInputRef.current.selectionEnd = editedPos;}
+    phoneInputRef.current.selectionStart = caretPosition; 
+    phoneInputRef.current.selectionEnd = caretPosition;
   }, [phone])
 
 
