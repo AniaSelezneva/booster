@@ -47,12 +47,34 @@ const OrderModal = () => {
       }
     }
 
+    function setCaretPosition(elem, caretPos) {
+
+    if(elem != null) {
+        if(elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.move('character', caretPos);
+            range.select();
+        }
+        else {
+            if(elem.selectionStart) {
+                elem.focus();
+                elem.setSelectionRange(caretPos, caretPos);
+            }
+            else
+                elem.focus();
+        }
+    }
+}
 
     if (changedIdx) {
       setPrevPhone(prev=> (prev.replaceAt(changedIdx, numArr[changedIdx])))
 phoneInputRef.current.focus()
       //log(phoneInputRef.selectionStart)
-       phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
+       //phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
+      setCaretPosition(phoneInputRef.current, changedIdx)
+       
+        
+       
     }
 
 
