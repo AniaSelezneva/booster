@@ -40,8 +40,9 @@ const OrderModal = () => {
 
     for (let i = 0; i < numArr.length; i++) {
       for (let j = 0; j < editedNumArr.length && !changedIdx; j++) {
-        if (i === j && numArr[i] !== editedNumArr[j]) {
-          if (!isNaN(editedNumArr[i]) && numArr[i]!== '-' && numArr[i] !== '(' && numArr[i]!==')' && numArr[i] !== '7' && numArr[i] !== '+') {
+        if (i!==0 && i!==1 && i!== 2 && i !== 6 && i!== 10 && i !== 13 && 
+            i === j && numArr[i] !== editedNumArr[j]) {
+          if (!isNaN(editedNumArr[i])) {
             changedIdx = i
             break
           }
@@ -128,6 +129,7 @@ const OrderModal = () => {
     let editedPos
     if(phone.charAt(caretPosition) === ')') editedPos= caretPosition+1 
     if(phone.charAt(caretPosition) === '-') editedPos = caretPosition +1
+    else editedPos = caretPosition 
     if(caretPosition){
     phoneInputRef.current.selectionStart = editedPos; 
     phoneInputRef.current.selectionEnd = editedPos;}
