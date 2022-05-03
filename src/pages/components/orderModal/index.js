@@ -24,24 +24,24 @@ const OrderModal = () => {
   const phoneInputRef = React.useRef()
   const [caretPosition, setCaretPosition] = React.useState()
 
-  const [prevPhone, setPrevPhone] = React.useState(`+7(___)___-__-__`)
+  // const [prevPhone, setPrevPhone] = React.useState(`+7(___)___-__-__`)
   const [phone, setPhone] = React.useState(`+7(___)___-__-__`) // 3,4,5; 7,8,9; 11,12; 14,15
 
 
-  const applyPattern = (newPhone) => {
+  const applyPattern = (editedPhone) => {
     
     
   
 
     let changedIdx;
-    const numArr = newPhone.split('')
-    const prevNumArr = prevPhone.split('')
+    const numArr = phone.split('')
+    const editedNumArr = editedPhone.split('')
 
 
     for (let i = 0; i < numArr.length; i++) {
-      for (let j = 0; j < prevNumArr.length && !changedIdx; j++) {
-        if (i === j && numArr[i] !== prevNumArr[j]) {
-          if (!isNaN(numArr[i])) {
+      for (let j = 0; j < editedNumArr.length && !changedIdx; j++) {
+        if (i === j && numArr[i] !== editedNumArr[j]) {
+          if (!isNaN(editedNumArr[i]) && numArr[i]!== '-' && numArr[i] !== '(' && numArr[i]!==')') {
             changedIdx = i
             break
           }
@@ -70,27 +70,18 @@ const OrderModal = () => {
         range.moveStart('character', start);
         range.select();
     }
-}       
-         
-        
-        
-            
-               
-                
-           
-           
-                
+}   
 
     if (changedIdx) {
-      setPrevPhone(prev=> (prev.replaceAt(changedIdx, numArr[changedIdx])))
+      setPhone(prev=> (prev.replaceAt(changedIdx, editedNumArr[changedIdx])))
 //phoneInputRef.current.focus()
       //log(phoneInputRef.selectionStart)
        //phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
       //setCaretPosition(phoneInputRef.current, 3, 3)
        
-     setTimeout(()=> {phoneInputRef.current.selectionStart = 3; 
-       phoneInputRef.current.selectionEnd = 3; }
-       ,2000 ) 
+     // setTimeout(()=> {phoneInputRef.current.selectionStart = 3; 
+      // phoneInputRef.current.selectionEnd = 3; }
+      // ,2000 ) 
     }
 
 
@@ -134,8 +125,10 @@ const OrderModal = () => {
  // }, [phone])
 
   React.useEffect(() => {
-    log(prevPhone)
-  }, [prevPhone])
+    if(caretPosition){
+    phoneInputRef.current.selectionStart = caretPosition; 
+    phoneInputRef.current.selectionEnd = caretPosition;}
+  }, [phone])
 
 
   return (<>
@@ -152,8 +145,8 @@ const OrderModal = () => {
       <div className={styles.email}>
         <label htmlFor="phone">Телефон: </label>
         <input ref={phoneInputRef} placeholder="+7(___)___-__-__" minLength="11" maxLength="200" type="tel" name="phone" id="phone" required
-          value={prevPhone}
-          onChange={e => { setCaretPosition(e.target.selectionStart); setPhone(e.target.value); applyPattern(e.target.value) }} 
+          value={phone}
+          onChange={e => { setCaretPosition(e.target.selectionStart); applyPattern(e.target.value) }} 
           />
       </div>
 
