@@ -27,10 +27,10 @@ const OrderModal = () => {
   const [phone, setPhone] = React.useState(`+7(___)___-__-__`) // 3,4,5; 7,8,9; 11,12; 14,15
 
 
-  const applyPattern = (phone, prevPhone) => {
+  const applyPattern = (newPhone) => {
 
     let changedIdx;
-    const numArr = phone.split('')
+    const numArr = newPhone.split('')
     const prevNumArr = prevPhone.split('')
 
 
@@ -49,9 +49,10 @@ const OrderModal = () => {
 
 
     if (changedIdx) {
-      setPrevPhone(prevPhone.replaceAt(changedIdx, numArr[changedIdx]))
-      log(phoneInputRef.selectionStart)
-      // phoneInputRef.current.selectionStart = changedIdx + 1
+      setPrevPhone(prev=> (prev.replaceAt(changedIdx, numArr[changedIdx])))
+phoneInputRef.current.focus()
+      //log(phoneInputRef.selectionStart)
+       phoneInputRef.current.selectionStart = changedIdx 
     }
 
 
@@ -90,9 +91,9 @@ const OrderModal = () => {
     // console.log(data)
   }
 
-  React.useEffect(() => {
-    applyPattern(phone, prevPhone)
-  }, [phone])
+  //React.useEffect(() => {
+ //   applyPattern(phone, prevPhone)
+ // }, [phone])
 
   React.useEffect(() => {
     log(prevPhone)
@@ -113,7 +114,7 @@ const OrderModal = () => {
         <label htmlFor="phone">Телефон: </label>
         <input ref={phoneInputRef} placeholder="+7(___)___-__-__" minLength="11" maxLength="200" type="tel" name="phone" id="phone" required
           value={prevPhone}
-          onChange={e => { setPhone(e.target.value) }} />
+          onChange={e => { setPhone(e.target.value); applyPattern(e.target.value) }} />
       </div>
 
       {/* Items */}
