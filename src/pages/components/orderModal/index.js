@@ -79,7 +79,7 @@ const OrderModal = () => {
 
     if (changedIdx) {
       setPrevPhone(prev=> (prev.replaceAt(changedIdx, numArr[changedIdx])))
-phoneInputRef.current.focus()
+//phoneInputRef.current.focus()
       //log(phoneInputRef.selectionStart)
        //phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
       setCaretPosition(phoneInputRef.current, changedIdx, changedIdx+1)
