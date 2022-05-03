@@ -37,7 +37,7 @@ const OrderModal = () => {
                
                if  (!isNaN(editedPhone.charAt(caretPosition))){
                  
-                 setPhone(prev => (prev.replaceAt(caretPosition, editedPhone(caretPosition))))
+                 setPhone(prev => (prev.replaceAt(caretPosition, editedPhone.charAt(caretPosition))))
                  
                  setCaretPosition(prev => {let newPos = prev + 1;
                                           if(newPos === 6 || newPos === 10 || newPos === 13)
