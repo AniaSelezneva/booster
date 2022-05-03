@@ -47,31 +47,42 @@ const OrderModal = () => {
       }
     }
 
-    function setCaretPosition(elem, caretPos) {
+    
 
-    if(elem != null) {
-        if(elem.createTextRange) {
-            var range = elem.createTextRange();
-            range.move('character', caretPos);
-            range.select();
-        }
-        else {
-            if(elem.selectionStart) {
-                elem.focus();
-                elem.setSelectionRange(caretPos, caretPos);
-            }
-            else
-                elem.focus();
-        }
+   
+        
+            
+     function setCaretPosition(ctrl, start, end) {
+    // IE >= 9 and other browsers
+    if (ctrl.setSelectionRange) {
+        ctrl.focus();
+        ctrl.setSelectionRange(start, end);
     }
-}
+    // IE < 9 
+    else if (ctrl.createTextRange) {
+        var range = ctrl.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', end);
+        range.moveStart('character', start);
+        range.select();
+    }
+}       
+         
+        
+        
+            
+               
+                
+           
+           
+                
 
     if (changedIdx) {
       setPrevPhone(prev=> (prev.replaceAt(changedIdx, numArr[changedIdx])))
 phoneInputRef.current.focus()
       //log(phoneInputRef.selectionStart)
        //phoneInputRef.current.setSelectionRange(changedIdx,  changedIdx+1);
-      setCaretPosition(phoneInputRef.current, changedIdx)
+      setCaretPosition(phoneInputRef.current, changedIdx, changedIdx+1)
        
         
        
