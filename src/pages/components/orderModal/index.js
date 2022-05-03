@@ -41,7 +41,7 @@ const OrderModal = () => {
     for (let i = 0; i < numArr.length; i++) {
       for (let j = 0; j < editedNumArr.length && !changedIdx; j++) {
         if (i === j && numArr[i] !== editedNumArr[j]) {
-          if (!isNaN(editedNumArr[i]) && numArr[i]!== '-' && numArr[i] !== '(' && numArr[i]!==')') {
+          if (!isNaN(editedNumArr[i]) && numArr[i]!== '-' && numArr[i] !== '(' && numArr[i]!==')' && numArr[i] !== '7' && numArr[i] !== '+') {
             changedIdx = i
             break
           }
@@ -125,9 +125,12 @@ const OrderModal = () => {
  // }, [phone])
 
   React.useEffect(() => {
+    let editedPos
+    if(phone.charAt(caretPosition) === ')') editedPos= caretPosition+1 
+    if(phone.charAt(caretPosition) === '-') editedPos = caretPosition +1
     if(caretPosition){
-    phoneInputRef.current.selectionStart = caretPosition; 
-    phoneInputRef.current.selectionEnd = caretPosition;}
+    phoneInputRef.current.selectionStart = editedPos; 
+    phoneInputRef.current.selectionEnd = editedPos;}
   }, [phone])
 
 
