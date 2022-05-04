@@ -117,7 +117,9 @@ const OrderModal = () => {
     setErrors({ name: undefined, phone: undefined, email: undefined });
   };
 
-  const sendOrder = async () => {
+  const sendOrder = async (e) => {
+    e.preventDefault()
+    
     if (areFieldsValid()) {
       const body = {
         name: name.trim(),
