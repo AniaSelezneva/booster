@@ -194,7 +194,6 @@ const OrderModal = () => {
               type="text"
               name="name"
               id="name"
-              required
               onChange={(e) => {
                 resetErrors();
                 setName(e.target.value);
@@ -209,7 +208,6 @@ const OrderModal = () => {
               type="tel"
               name="phone"
               id="phone"
-              required
               value={phone}
               onChange={(e) => {
                 resetErrors();
@@ -242,7 +240,6 @@ const OrderModal = () => {
               type="email"
               name="email"
               id="email"
-              required
               onChange={(e) => {
                 resetErrors();
                 setEmail(e.target.value);
