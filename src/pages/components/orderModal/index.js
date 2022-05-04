@@ -251,7 +251,7 @@ const OrderModal = () => {
 
           {/* Submit */}
           {state.items.length > 0 ? (
-            <input type="submit" className={styles.submit} value="Отправить">
+            <input type="submit" className={styles.submit} value="Отправить"/>
           ) : (
             <p className={styles.add_items_info}>
               Пожалуйста, добавьте товары для заказа
