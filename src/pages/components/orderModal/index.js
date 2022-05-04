@@ -250,8 +250,8 @@ const OrderModal = () => {
 
           {/* Submit */}
           {state.items.length > 0 ? (
-            <p>{window.ym}</p>
-            <input type="submit" className={styles.submit} onClick={() => {window.ym(88691771,'reachGoal','target')}}  value="Отправить"/>
+           <> <p>{window.ym}</p>
+            <input type="submit" className={styles.submit} onClick={() => {window.ym(88691771,'reachGoal','target')}}  value="Отправить"/></>
           ) : (
             <p className={styles.add_items_info}>
               Пожалуйста, добавьте товары для заказа
