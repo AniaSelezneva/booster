@@ -22,6 +22,7 @@ const OrderModal = () => {
   const setItemsTotal = React.useContext(GlobalItemsCounterContext);
 
   const phoneInputRef = useRef();
+  const modalRef = useRef()
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -168,6 +169,8 @@ const OrderModal = () => {
       phoneInputRef.current.selectionEnd = caretPosition;
     }
   }, [caretPosition]);
+  
+  useEffect(() => { window.visualViewport.addEventListener('resize', () => modalRef.current.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"}) )}, [])
 
   return (
     <>
@@ -187,7 +190,7 @@ const OrderModal = () => {
         <p className={styles.info}>Заказ успешно добавлен</p>
       ) : (
         /* Form */
-        <form className={styles.form} onSubmit={sendOrder} >
+        <form className={styles.form} onSubmit={sendOrder} ref={modalRef} >
           <div className={styles.name}>
             <label htmlFor="name">Имя: </label>
             <input
