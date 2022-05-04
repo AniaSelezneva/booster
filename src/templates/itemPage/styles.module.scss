@@ -1,1 +1,36 @@
-$background_color: blue;
+$background_color: #f9f9f9ff;
+
+.item {
+  border: 1px solid black;
+  background: $background_color;
+  max-width: 920px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 8;
+
+    img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border: 1px solid black;
+      flex-grow: 1;
+      max-width: 300px;
+    }
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      padding-left: 1rem;
+    }
+  }
+
+  & > p {
+    padding: 1rem;
+  }
+}

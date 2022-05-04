@@ -1,7 +1,11 @@
-$background_color: blue;
+$background_color: #e5e5e5ff;
 
 .list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+body {
+  background: $background_color;
 }

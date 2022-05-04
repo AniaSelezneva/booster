@@ -1,8 +1,15 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://web-booster.netlify.app`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "webbooster task",
+        icon: "src/images/icon.svg",
+      },
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-layout`,
     {
@@ -14,4 +21,4 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
   ],
-}
+};

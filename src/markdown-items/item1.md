@@ -1,6 +1,6 @@
 ---
-title: "Spoon"
-description: This is a lovely spoon
+title: "Ложка"
+description: Quis commodo odio aenean sed
 img: /images/spoon.jpg
 id: 1
 ---

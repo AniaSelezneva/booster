@@ -1,26 +1,41 @@
-import * as React from "react"
+import * as React from "react";
 import {
   GlobalDispatchContext,
-  GlobalStateContext,
-} from "../../context/GlobalContextProvider"
-import * as styles from "./styles.module.scss"
-import Markdown from "markdown-to-jsx"
+  GlobalItemsCounterContext,
+} from "../../context/GlobalContextProvider";
+import * as styles from "./styles.module.scss";
+import Markdown from "markdown-to-jsx";
+import { add_item } from "../../context/actions";
 
+const ItemPage = ({
+  pageContext: {
+    data: { item },
+  },
+}) => {
+  const dispatch = React.useContext(GlobalDispatchContext);
+  const setItemsTotal = React.useContext(GlobalItemsCounterContext);
 
-// markup
-const ItemPage = ({ pageContext: { data: { item } } }) => {
-  const dispatch = React.useContext(GlobalDispatchContext)
-  const state = React.useContext(GlobalStateContext)
+  return (
+    <div className={styles.item}>
+      <div>
+        <img src={item.img} alt={item.title}></img>
+        <div>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          <button
+            onClick={() => {
+              console.log(item);
+              dispatch(add_item(item));
+              setItemsTotal((prev) => prev + 1);
+            }}
+          >
+            В корзину
+          </button>
+        </div>
+      </div>
+      <Markdown>{item.text}</Markdown>
+    </div>
+  );
+};
 
-
-  return (<div>
-    <img src={item.img} alt={item.title}></img>
-    <h3>{item.title}</h3>
-    <p>{item.description}</p>
-    <Markdown>{item.text}</Markdown>
-  </div>)
-}
-
-
-
-export default ItemPage
+export default ItemPage;

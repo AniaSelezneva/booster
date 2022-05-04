@@ -1,24 +1,26 @@
-$background_color: blue;
+$background_color: #f9f9f9ff;
 
 .item {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
+  background: $background_color;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
 
-    &>img {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        border-bottom: 1px solid black;
-    }
+  & > img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid black;
+  }
 
-    &>h3,
-    &>p {
-        padding-left: 1rem;
-    }
+  & > h3,
+  & > p {
+    padding-left: 1rem;
+  }
 
-    &>a {
-        align-self: center;
-        text-decoration: none;
-    }
+  & > a {
+    align-self: center;
+    text-decoration: none;
+    padding: 1.5rem;
+  }
 }
