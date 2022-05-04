@@ -185,7 +185,7 @@ const OrderModal = () => {
         <p className={styles.info}>Заказ успешно добавлен</p>
       ) : (
         /* Form */
-        <form className={styles.form} onSumbit={sendOrder} >
+        <form className={styles.form} onSubmit={sendOrder} >
           <div className={styles.name}>
             <label htmlFor="name">Имя: </label>
             <input
