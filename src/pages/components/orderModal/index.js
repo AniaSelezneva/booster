@@ -133,7 +133,7 @@ const OrderModal = () => {
             };
           })
         ),
-        targetEmail: email,
+        targetEmail: email.trim(),
       };
 
       let formBody = [];
