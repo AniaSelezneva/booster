@@ -23,7 +23,6 @@ const Item = ({ data }) => {
           <p>{item.description}</p>
           <button
             onClick={() => {
-              console.log(item);
               dispatch(add_item(item));
               setItemsTotal((prev) => prev + 1);
             }}
