@@ -1,5 +1,5 @@
 import * as React from "react";
-import ym from 'react-yandex-metrika';
+import ym from "react-yandex-metrika";
 import { useContext, useRef, useState, useEffect } from "react";
 import {
   GlobalDispatchContext,
@@ -37,6 +37,8 @@ const OrderModal = () => {
 
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [stopAsync, setStopAsync] = useState(false);
 
   const applyPattern = (editedPhone, caretPosition) => {
     // exclude +, 7, (, ), -
@@ -119,8 +121,8 @@ const OrderModal = () => {
   };
 
   const sendOrder = async (e) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (areFieldsValid()) {
       const body = {
         name: name.trim(),
@@ -145,21 +147,34 @@ const OrderModal = () => {
       }
       formBody = formBody.join("&");
 
-      const response = await fetch(`${process.env.GATSBY_API_URL}api/order`, {
+      setIsLoading(true);
+
+      await fetch(`${process.env.GATSBY_API_URL}api/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: formBody,
-      });
+      })
+        .then((response) => {
+          if (!stopAsync) {
+            setIsLoading(false);
 
-      if (response.status === 200) {
-        setIsSent(true);
-        dispatch(clear_items);
-        setItemsTotal(0);
-      } else if (response.status === 500) {
-        setIsError(true);
-      }
+            if (response.status === 200) {
+              setIsSent(true);
+              dispatch(clear_items);
+              setItemsTotal(0);
+            } else if (response.status === 500) {
+              setIsError(true);
+            } else {
+              setIsError(true);
+            }
+          }
+        })
+        .catch(() => {
+          setIsLoading(false);
+          setIsError(true);
+        });
     }
   };
 
@@ -170,8 +185,19 @@ const OrderModal = () => {
     }
   }, [caretPosition]);
 
+  useEffect(() => {
+    return () => {
+      setStopAsync(true);
+    };
+  }, []);
+
   return (
     <>
+      {isLoading && (
+        <div className={styles.loading_overlay}>
+          <p>Загрузка...</p>
+        </div>
+      )}
       {/* Overlay for dimming */}
       {state.showModal && (
         <div
@@ -188,7 +214,7 @@ const OrderModal = () => {
         <p className={styles.info}>Заказ успешно добавлен</p>
       ) : (
         /* Form */
-        <form className={styles.form} onSubmit={sendOrder} >
+        <form className={styles.form} onSubmit={sendOrder}>
           <div className={styles.name}>
             <label htmlFor="name">Имя: </label>
             <input
@@ -251,7 +277,14 @@ const OrderModal = () => {
 
           {/* Submit */}
           {state.items.length > 0 ? (
-            <input type="submit" className={styles.submit} onClick={() => {ym('reachGoal','target');}}  value="Отправить"/>
+            <input
+              type="submit"
+              className={styles.submit}
+              onClick={() => {
+                ym("reachGoal", "target");
+              }}
+              value="Отправить"
+            />
           ) : (
             <p className={styles.add_items_info}>
               Пожалуйста, добавьте товары для заказа

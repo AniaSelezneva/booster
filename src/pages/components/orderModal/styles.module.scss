@@ -105,3 +105,22 @@ $error_color: #f21c05;
     color: $error_color;
   }
 }
+
+.loading_overlay {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: white;
+    position: relative;
+    top: -3rem;
+  }
+}
