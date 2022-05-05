@@ -1,4 +1,5 @@
 $background_color: #e5e5e5ff;
+$button_color: #14b88cff;
 
 .list {
   display: flex;
@@ -8,4 +9,15 @@ $background_color: #e5e5e5ff;
 
 body {
   background: $background_color;
+
+  button {
+    border: 2px solid $button_color;
+    cursor: pointer;
+    transition-duration: 0.5s;
+
+    &:hover {
+      background: $button_color;
+      color: white;
+    }
+  }
 }
