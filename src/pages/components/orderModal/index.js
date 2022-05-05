@@ -1,4 +1,5 @@
 import * as React from "react";
+import ym from 'react-yandex-metrika';
 import { useContext, useRef, useState, useEffect } from "react";
 import {
   GlobalDispatchContext,
@@ -117,7 +118,9 @@ const OrderModal = () => {
     setErrors({ name: undefined, phone: undefined, email: undefined });
   };
 
-  const sendOrder = async () => {
+  const sendOrder = async (e) => {
+    e.preventDefault()
+    
     if (areFieldsValid()) {
       const body = {
         name: name.trim(),
@@ -131,7 +134,7 @@ const OrderModal = () => {
             };
           })
         ),
-        targetEmail: email,
+        targetEmail: email.trim(),
       };
 
       let formBody = [];
@@ -185,14 +188,13 @@ const OrderModal = () => {
         <p className={styles.info}>Заказ успешно добавлен</p>
       ) : (
         /* Form */
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={sendOrder} >
           <div className={styles.name}>
             <label htmlFor="name">Имя: </label>
             <input
               type="text"
               name="name"
               id="name"
-              required
               onChange={(e) => {
                 resetErrors();
                 setName(e.target.value);
@@ -207,7 +209,6 @@ const OrderModal = () => {
               type="tel"
               name="phone"
               id="phone"
-              required
               value={phone}
               onChange={(e) => {
                 resetErrors();
@@ -240,7 +241,6 @@ const OrderModal = () => {
               type="email"
               name="email"
               id="email"
-              required
               onChange={(e) => {
                 resetErrors();
                 setEmail(e.target.value);
@@ -251,9 +251,7 @@ const OrderModal = () => {
 
           {/* Submit */}
           {state.items.length > 0 ? (
-            <button type="button" className={styles.submit} onClick={sendOrder}>
-              Отправить
-            </button>
+            <input type="submit" className={styles.submit} onClick={() => {ym('reachGoal','target');}}  value="Отправить"/>
           ) : (
             <p className={styles.add_items_info}>
               Пожалуйста, добавьте товары для заказа
