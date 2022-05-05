@@ -1,109 +1,107 @@
-$form_background: #e5e5e5ff;;
+$form_background: #e5e5e5ff;
 $error_color: #f21c05;
 
 .overlay {
-    /* For dimming */
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, .8);
+  /* For dimming */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .form,
 .info,
 .info_error {
-    width: max-content;
-    position: absolute;
-    z-index: 1;
-    background: $form_background;
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
-    padding: 3rem;
+  width: max-content;
+  position: absolute;
+  z-index: 1;
+  background: $form_background;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  padding: 3rem;
 
-    @media screen and (max-width: 400px) {
-        width: 100vw;
-        padding-left: 5rem;
+  @media screen and (max-width: 400px) {
+    width: 100vw;
+    padding-left: 5rem;
+  }
+
+  & > div {
+    padding-bottom: 1rem;
+  }
+
+  .name,
+  .phone,
+  .target_email {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  input {
+    padding-top: 5px;
+  }
+
+  .close {
+    position: absolute;
+    right: 7px;
+    top: 0;
+    cursor: pointer;
+  }
+
+  .submit {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  // Items
+  & > ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    gap: 0.5rem;
+
+    p {
+      text-align: center;
     }
 
-    &>div {
-        padding-bottom: 1rem;
+    & > li {
+      position: relative;
 
-    }
+      & > img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
 
-    .name,
-    .phone,
-    .target_email {
+      .quantity {
         display: flex;
-        flex-direction: column;
-        position: relative;
-    }
+        justify-content: center;
+        gap: 1rem;
+        cursor: pointer;
+      }
 
-    input {
-        width: 100%;
-        padding-top: 5px;
-    }
-
-    .close {
+      .remove_item {
         position: absolute;
         right: 7px;
         top: 0;
         cursor: pointer;
+      }
     }
+  }
 
-    .submit {
-        width: 100%;
-        margin-top: 2rem;
-    }
+  .error {
+    align-self: center;
+    color: $error_color;
+    position: absolute;
+    bottom: 0;
+  }
 
-    // Items
-    &>ul {
-        display: flex;
-        flex-wrap: wrap;
-        padding-left: 0;
-        gap: 0.5rem;
-
-        p {
-            text-align: center;
-        }
-
-        &>li {
-            position: relative;
-
-            &>img {
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-            }
-
-            .quantity {
-                display: flex;
-                justify-content: center;
-                gap: 1rem;
-                cursor: pointer;
-            }
-
-            .remove_item {
-                position: absolute;
-                right: 7px;
-                top: 0;
-                cursor: pointer;
-            }
-        }
-    }
-
-    .error {
-        align-self: center;
-        color: $error_color;
-        position: absolute;
-        bottom: 0;
-    }
-
-    .add_items_info,
-    .info_error {
-        color: $error_color
-    }
+  .add_items_info,
+  .info_error {
+    color: $error_color;
+  }
 }
